@@ -1,0 +1,413 @@
+{
+    "Tiles": [
+        {
+            "name": "ChannelBadge",
+            "chapel": "False",
+            "edges": {
+                "u": "None",
+                "r": "c0",
+                "d": "None",
+                "l": "c0"
+            },
+            "badge": "c0",
+            "pool": 2
+        },
+        {
+            "name": "Channel",
+            "chapel": "False",
+            "edges": {
+                "u": "None",
+                "r": "c0",
+                "d": "None",
+                "l": "c0"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "DiagonalBadge",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "None",
+                "l": "c0"
+            },
+            "badge": "c0",
+            "pool": 2
+        },
+        {
+            "name": "Diagonal",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "None",
+                "l": "c0"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "DiagonalPathBadge",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "p0",
+                "l": "c0"
+            },
+            "badge": "c0",
+            "pool": 2
+        },
+        {
+            "name": "DiagonalPath",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "p0",
+                "l": "c0"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "TownSquareBadge",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "c0",
+                "d": "c0",
+                "l": "c0"
+            },
+            "badge": "c0",
+            "pool": 1
+        },
+        {
+            "name": "PathCurve",
+            "chapel": "False",
+            "edges": {
+                "u": "None",
+                "r": "None",
+                "d": "p0",
+                "l": "p0"
+            },
+            "badge": "None",
+            "pool": 9
+        },
+        {
+            "name": "PathStraight",
+            "chapel": "False",
+            "edges": {
+                "u": "p0",
+                "r": "None",
+                "d": "p0",
+                "l": "None"
+            },
+            "badge": "None",
+            "pool": 8
+        },
+        {
+            "name": "PathCrossing",
+            "chapel": "False",
+            "edges": {
+                "u": "p0",
+                "r": "p1",
+                "d": "p0",
+                "l": "p1"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "PathFourway",
+            "chapel": "False",
+            "edges": {
+                "u": "p0",
+                "r": "p1",
+                "d": "p2",
+                "l": "p3"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "PathThreeway",
+            "chapel": "False",
+            "edges": {
+                "u": "None",
+                "r": "p0",
+                "d": "p1",
+                "l": "p2"
+            },
+            "badge": "None",
+            "pool": 4
+        },
+        {
+            "name": "Indent",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "c0",
+                "d": "None",
+                "l": "c0"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "IndentBadge",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "c0",
+                "d": "None",
+                "l": "c0"
+            },
+            "badge": "c0",
+            "pool": 1
+        },
+        {
+            "name": "IndentPath",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "c0",
+                "d": "p0",
+                "l": "c0"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "IndentPathBadge",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "c0",
+                "d": "p0",
+                "l": "c0"
+            },
+            "badge": "c0",
+            "pool": 2
+        },
+        {
+            "name": "CapDualAngle",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "None",
+                "l": "c1"
+            },
+            "badge": "None",
+            "pool": 2
+        },
+        {
+            "name": "Cap",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "UNDEFINED",
+                "d": "UNDEFINED",
+                "l": "UNDEFINED"
+            },
+            "badge": "None",
+            "pool": 5
+        },
+        {
+            "name": "CapExitPathLeft",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "None",
+                "l": "p0"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "CapExitPathRight",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "None",
+                "l": "None"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "CapPassby",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "None",
+                "l": "p0"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "CapPathCurveDownLeft",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "p0",
+                "l": "p0"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "CapPathCurveDownRight",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "None",
+                "l": "p0"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "CapDualOpposites",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "c1",
+                "l": "None"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "CapPathThreeway",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "p1",
+                "l": "p2"
+            },
+            "badge": "None",
+            "pool": 3
+        },
+        {
+            "name": "CapPassbyPaths",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p1",
+                "d": "p1",
+                "l": "p0"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "CappathBridge",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "p0",
+                "l": "p1"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "DiagonalTwoPaths",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "c1",
+                "l": "c0"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "CastleCross",
+            "chapel": "False",
+            "edges": {
+                "u": "c0",
+                "r": "c1",
+                "d": "c0",
+                "l": "c1"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "Chapel",
+            "chapel": "True",
+            "edges": {
+                "u": "None",
+                "r": "None",
+                "d": "None",
+                "l": "None"
+            },
+            "badge": "None",
+            "pool": 4
+        },
+        {
+            "name": "ChapelOneway",
+            "chapel": "True",
+            "edges": {
+                "u": "None",
+                "r": "None",
+                "d": "p0",
+                "l": "None"
+            },
+            "badge": "None",
+            "pool": 2
+        },
+        {
+            "name": "ChapelThreeway",
+            "chapel": "True",
+            "edges": {
+                "u": "None",
+                "r": "p0",
+                "d": "p1",
+                "l": "p2"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "ChapelCap",
+            "chapel": "True",
+            "edges": {
+                "u": "c0",
+                "r": "None",
+                "d": "None",
+                "l": "None"
+            },
+            "badge": "None",
+            "pool": 1
+        },
+        {
+            "name": "StartTile",
+            "center": "None",
+            "edges": {
+                "u": "c0",
+                "r": "p0",
+                "d": "None",
+                "l": "p0"
+            },
+            "badge": "None",
+            "pool": 0
+        }
+        
+    ]
+}
