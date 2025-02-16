@@ -209,9 +209,9 @@
             "chapel": "False",
             "edges": {
                 "u": "c0",
-                "r": "UNDEFINED",
-                "d": "UNDEFINED",
-                "l": "UNDEFINED"
+                "r": "None",
+                "d": "None",
+                "l": "None"
             },
             "badge": "None",
             "pool": 5

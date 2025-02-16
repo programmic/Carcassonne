@@ -1,13 +1,12 @@
 import json
+import random
 
 from tile import *
 from grid import *
-from placing import *
 
 def findTile(name: str) -> dict:
     for i in tiles:
-        if i.get("name") == name:  # Assumes each tile has a 'name' key
-            print(i, " -:-  ", str(type(i)))
+        if i.get("name") == name:
             return i
     print(f"\033[31mERROR: TILE NOT FOUND: {name}\033[0m")
     return None
@@ -24,27 +23,36 @@ def constructTile(name: str) -> Tile:
         ],
         d.get("chapel")
         )
-    print (t.__repr__)
     return t
 
 def fillPool():
+    generatePool: list[str] = []
     for i in tiles:
         for n in range(i.get("pool")): 
-            pool.append(i.get("name"))
+            generatePool.append(i.get("name"))
+    return generatePool
 
+def canPlace(x: int, y: int, piece: (str | Tile) ) -> bool:
+    tile: str    = piece if isinstance(piece, Tile) else constructTile(piece)
+    n: Grid      = grid.getNeighbours(x, y)
+    e: list[str] = tile.edges
+    
+    if (n[0] != "EMPTY") and (n[0][0] != e[0][0]): return False
+    if (n[1] != "EMPTY") and (n[1][0] != e[1][0]): return False
+    if (n[2] != "EMPTY") and (n[2][0] != e[2][0]): return False
+    if (n[3] != "EMPTY") and (n[3][0] != e[3][0]): return False
+    return True
 
 if __name__ == "__main__":
-    print("\033c")
+    print("\033c",end="")
     with open("tiles.json", "r") as file:
         data = json.load(file)
     global tiles ; tiles = data.get("Tiles")
-    global grid  ; grid = Grid()
-    global pool  ; pool: list[ str ] = []
+    grid: Grid = Grid()
+    pool: list[ str ] = fillPool()
 
+    grid[(0,-1)]= constructTile("Cap")
+    grid[(0,1)] = constructTile("Chapel")
 
-    grid[(0,0)] = constructTile("StartTile")
+    print(canPlace(0,0, "Channel"))
 
-    print(grid[(0,0)])
-
-
-    fillPool()
