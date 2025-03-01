@@ -14,6 +14,10 @@ class Grid:
         """
         self.grid: dict[tuple[int, int], Tile] = {}
 
+    def clear(self) -> None:
+        """Clears the entire grid - USE CAREFULLY"""
+        self.grid.clear()
+
     def __setitem__(self, key: tuple[int, int], value: Tile) -> None:
         """
         Assign a Tile to a specific coordinate in the grid.
@@ -72,9 +76,9 @@ class Grid:
         rT: Tile | None = self.grid.get((x+1, y))
         dT: Tile | None = self.grid.get((x, y+1))
         lT: Tile | None = self.grid.get((x-1, y))
-
-        u = uT.edges[2] if uT else "EMPTY"
-        r = rT.edges[3] if rT else "EMPTY"
-        d = dT.edges[0] if dT else "EMPTY"
-        l = lT.edges[1] if lT else "EMPTY"
+    
+        u = uT.getRotatedEdges()[2] if uT else "EMPTY"
+        r = rT.getRotatedEdges()[3] if rT else "EMPTY"
+        d = dT.getRotatedEdges()[0] if dT else "EMPTY"
+        l = lT.getRotatedEdges()[1] if lT else "EMPTY"
         return [ u, r, d, l ]

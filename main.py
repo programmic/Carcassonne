@@ -5,6 +5,17 @@ import random
 from tile import *
 from grid import *
 
+def printEncapsulated(
+        message: str, 
+        boxCol:str = "\033[0;0m",
+        textCol:str = "\033[0;0m"
+    ) -> None:
+    print(boxCol + "╔" +                (len(message) + 6) * "═" +         "╗")
+    print(boxCol + "║" + textCol + 3 * " " + message  + 3  * " " + boxCol +"║")
+    print(boxCol + "╚" +                (len(message) + 6) * "═" +         "╝")
+    print("\033[0;0m",end="")
+
+
 def findTile(name: str) -> dict:
     for i in tiles:
         if i.get("name") == name:
@@ -12,7 +23,7 @@ def findTile(name: str) -> dict:
     print(f"\033[31mERROR: TILE NOT FOUND: {name}\033[0m")
     return None
 
-def constructTile(name: str) -> Tile:
+def constructTile(name: str, rotation: int = 0) -> Tile:
     d: dict = findTile(name)
     t = Tile( 
         d.get("name"),
@@ -22,7 +33,8 @@ def constructTile(name: str) -> Tile:
             d.get("edges").get("d"),
             d.get("edges").get("l")
         ],
-        d.get("chapel")
+        d.get("chapel"),
+        rotation = rotation
         )
     return t
 
@@ -33,10 +45,10 @@ def fillPool():
             generatePool.append(i.get("name"))
     return generatePool
 
-def canPlace(x: int, y: int, piece: (str | Tile) ) -> bool:
-    tile: Tile = piece if isinstance(piece, Tile) else constructTile(piece)
+def canPlace(x: int, y: int, piece: (str | Tile), rotation: int = 0) -> bool:
+    tile: Tile = piece if isinstance(piece, Tile) else constructTile(piece, rotation)
     n: list[str] = grid.getNeighbours(x, y)
-    e: list[str] = tile.edges
+    e: list[str] = tile.getRotatedEdges()
 
     # Check if the edges match with the neighboring tiles
     if (n[0] != "EMPTY") and (n[0] != e[0]): return False
@@ -46,19 +58,24 @@ def canPlace(x: int, y: int, piece: (str | Tile) ) -> bool:
     return True
 
 def populateCenter(spread: int, count: int):
+    printEncapsulated("Generating test grid. Please wait...", boxCol="\033[34m", textCol="\033[37m")
     center_x, center_y = 0, 0
     placed_tiles = 0
 
+    tries: int = 2500
     while placed_tiles < count:
         x = random.randint(center_x - spread, center_x + spread)
         y = random.randint(center_y - spread, center_y + spread)
-        print(f"placing tile at ({x}|{y}) - placed tiles: {placed_tiles}")
+        if tries <= 0:
+            grid.clear() ; placed_tiles = 0
         if grid.getTile(x, y) == None:
             tile_name = random.choice(pool)
-            if canPlace(x, y, tile_name): # placing logic still sucks
-                grid[x,y] = constructTile(tile_name)
-                #pool.remove(tile_name)
+            rRot = random.randint(0,3) * 90
+            if canPlace(x, y, tile_name, rRot):
+                grid[x, y] = constructTile(tile_name, rRot)
                 placed_tiles += 1
+                tries = 2500
+            else: tries -= 1
     print(f"Populated map with {count} tiles")
 
 if __name__ == "__main__":
@@ -69,12 +86,12 @@ if __name__ == "__main__":
     grid: Grid = Grid()
     pool: list[ str ] = fillPool()
     # set (0|0) so start Tile
-    grid[0, 0] = constructTile("StartTile")
-    populateCenter(4,40)
+    grid[0, 0] = constructTile("StartTile", 0)
+    populateCenter(5,109)
 
     VAMPIRE_GRAY: tuple[int] = (12, 15, 20)
-    print(grid.getTiles())
-    for i in grid.getTiles(): print(i.name)
+    #print(grid.getTiles())
+    #for i in grid.getTiles(): print(i.name)
 
     # pygame setup
     pygame.init()
@@ -111,6 +128,8 @@ if __name__ == "__main__":
                     offset_x += dx
                     offset_y += dy
                     drag_start_x, drag_start_y = event.pos
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_z:
+                zoom = 1; offset_x = 0; offset_y = 0
 
         # fill the screen with a color to wipe away anything from last frame
         screen.fill(VAMPIRE_GRAY)

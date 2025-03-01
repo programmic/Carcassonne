@@ -13,7 +13,7 @@ class Tile:
         self.name = name
         self.edges = edges
         self.chapel = chapel
-        self.rotation = 0
+        self.rotation = rotation
         self.meeplePosition = None
         self.meepleOwner = None
     
@@ -43,10 +43,11 @@ class Tile:
 
     def get_color(self) -> tuple[int, int, int]:
         colors = {
-            "grass": (34, 139, 34),
-            "road": (139, 69, 19),
-            "city": (128, 128, 128),
-            "chapel": (255, 215, 0)
+            "grass":    (34 , 139, 34 ),
+            "road":     (139, 69 , 19 ),
+            "city":     (128, 128, 128),
+            "chapel":   (255, 215, 0  ),
+            "river":    (20 , 99 , 147)
         }
         return colors
     
@@ -55,6 +56,14 @@ class Tile:
         if t == 'N': return colors.get("grass")
         if t == 'p': return colors.get("road")
         if t == 'c': return colors.get("city")
+        if t == 'r': return colors.get("river")
+
+    def getRotatedEdges(self) -> list[str]:
+        """
+        Returns the edges of the tile based on its current rotation.
+        """
+        rotations = self.rotation // 90
+        return self.edges[-rotations:] + self.edges[:-rotations]
 
     def renderTile(self, TILE_SIZE, font):
         half_size = TILE_SIZE // 2
@@ -71,8 +80,11 @@ class Tile:
             [(0, 0),            (0, TILE_SIZE),         (half_size, half_size)]   # Left
         ]
 
+        # Get the rotated edges
+        rotated_edges = self.getRotatedEdges()
+
         # Draw the triangles
-        for i, edge in enumerate(self.edges):
+        for i, edge in enumerate(rotated_edges):
             color = self.getEdgeColor(edge[0])
             pygame.draw.polygon(subcanvas, color, points[i])
 
@@ -105,6 +117,11 @@ class Tile:
                 text_rect = text_surface.get_rect(center=(half_size, y_offset))
                 subcanvas.blit(text_surface, text_rect)
                 y_offset += font.get_height()
+
+            # Render the rotation under the name
+            rotation_surface = font.render(f"Rot: {self.rotation}", True, (0, 0, 0))
+            rotation_rect = rotation_surface.get_rect(center=(half_size, y_offset))
+            subcanvas.blit(rotation_surface, rotation_rect)
 
         return subcanvas
 
